@@ -4,19 +4,19 @@
 
 <main class="container mx-auto max-w-3xl">
 	<header class="mb-8">
-		<h1 class="text-3xl font-bold text-gray-800">{title}</h1>
+		<h1>{title}</h1>
 	</header>
 
 	<section class="mb-8">
-		<div class="rounded-lg bg-white p-4 shadow">
-			<h2 class="mb-4 text-lg font-semibold">Add New Task</h2>
+		<div class="rounded-lg p-4 shadow">
+			<h2 class="mb-4">Add New Task</h2>
 		</div>
 	</section>
 
 	<section>
-		<div class="rounded-lg bg-white shadow">
+		<div class="rounded-lg shadow">
 			<div class="border-b p-4">
-				<h2 class="text-lg font-semibold">Tasks</h2>
+				<h2 class="font-semibold">Tasks</h2>
 			</div>
 		</div>
 	</section>
