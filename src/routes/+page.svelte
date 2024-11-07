@@ -4,9 +4,7 @@
 <div>
 	<section class="mb-8">
 		<div class="flex justify-end">
-			<button type="button" class="btn btn-md variant-gradient-primary-secondary bg-gradient-to-br">
-				Add Task
-			</button>
+			<button type="button" class="variant-filled btn btn-md font-semibold">Add Task</button>
 		</div>
 	</section>
 
