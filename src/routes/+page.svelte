@@ -7,7 +7,6 @@
 		modalStore.trigger({
 			type: 'component',
 			title: 'Add a new task',
-			body: 'Body',
 			component: 'addTaskModal',
 		});
 	}
