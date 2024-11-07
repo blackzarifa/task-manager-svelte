@@ -3,8 +3,8 @@
 
 <div>
 	<section class="mb-8">
-		<div class="rounded-lg p-4 shadow">
-			<h2 class="mb-4">Add New Task</h2>
+		<div class="flex justify-end">
+			<button>Add Task</button>
 		</div>
 	</section>
 
