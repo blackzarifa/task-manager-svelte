@@ -9,6 +9,6 @@
 
 <Header {title} />
 
-<div class="container mx-auto space-y-8 p-4">
+<main class="container mx-auto space-y-8 p-4">
 	{@render children()}
-</div>
+</main>
