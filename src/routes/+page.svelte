@@ -1,10 +1,24 @@
 <script lang="ts">
+	import { getModalStore } from '@skeletonlabs/skeleton';
+
+	const modalStore = getModalStore();
+
+	function openForm() {
+		modalStore.trigger({
+			type: 'alert',
+			title: 'Hello!',
+			body: 'This is our first modal dialog',
+			buttonTextCancel: 'Close',
+		});
+	}
 </script>
 
 <div>
-	<section class="mb-8">
+	<section class="my-8">
 		<div class="flex justify-end">
-			<button type="button" class="variant-filled btn btn-md font-semibold">Add Task</button>
+			<button type="button" class="variant-filled btn btn-md font-semibold" on:click={openForm}>
+				Add Task
+			</button>
 		</div>
 	</section>
 
