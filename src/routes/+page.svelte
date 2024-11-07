@@ -5,10 +5,10 @@
 
 	function openForm() {
 		modalStore.trigger({
-			type: 'alert',
-			title: 'Hello!',
-			body: 'This is our first modal dialog',
-			buttonTextCancel: 'Close',
+			type: 'component',
+			title: 'Add a new task',
+			body: 'Body',
+			component: 'addTaskModal',
 		});
 	}
 </script>
