@@ -57,7 +57,12 @@
 
 			<label class="label">
 				<span>Due Date</span>
-				<input class="input" type="date" bind:value={formData.dueDate} />
+				<input
+					class="input"
+					type="date"
+					bind:value={formData.dueDate}
+					min={new Date().toISOString().split('T')[0]}
+				/>
 			</label>
 
 			<footer class="modal-footer flex justify-end space-x-2">
@@ -69,3 +74,9 @@
 		</form>
 	</div>
 {/if}
+
+<style>
+	::-webkit-calendar-picker-indicator {
+		filter: invert(0.8);
+	}
+</style>
