@@ -10,7 +10,7 @@
 			type: 'component',
 			title: 'Add a new task',
 			component: 'addTaskModal',
-			props: { tasks },
+			meta: { tasks },
 		});
 	}
 </script>

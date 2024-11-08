@@ -4,8 +4,8 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import type { Task } from '$lib/types/task';
 
-	const { tasks } = $props<{ tasks: Task[] }>();
 	const modalStore = getModalStore();
+	const { tasks } = $modalStore[0]?.meta ?? { tasks: [] };
 
 	const formData = $state<Omit<Task, 'id'>>({
 		title: '',
