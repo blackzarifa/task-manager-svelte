@@ -2,30 +2,38 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import { enhance } from '$app/forms';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import type { Task } from '$lib/types/task';
 
+	const { tasks } = $props<{ tasks: Task[] }>();
 	const modalStore = getModalStore();
 
-	const formData = $state({
+	const formData = $state<Omit<Task, 'id'>>({
 		title: '',
 		description: '',
 		dueDate: '',
+		completed: false,
+		createdAt: new Date().toISOString(),
 	});
 
 	const handleSubmit: SubmitFunction = () => {
+		const newTask = {
+			...formData,
+		};
+
+		tasks.push(newTask);
+		localStorage.setItem('tasks', JSON.stringify(tasks));
 		console.log(formData);
 
 		modalStore.close();
 		return undefined;
 	};
 
-	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
-	const cHeader = 'text-2xl font-bold';
 	const cForm = 'border border-surface-500 p-4 space-y-4';
 </script>
 
 {#if $modalStore[0]}
-	<div class={cBase}>
-		<header class={cHeader}>{$modalStore[0].title ?? 'Add a new Task'}</header>
+	<div class="card w-modal space-y-4 p-4 shadow-xl">
+		<header class="text-2xl font-bold">{$modalStore[0].title ?? 'Add a new Task'}</header>
 
 		{#if $modalStore[0].body}
 			<article>{$modalStore[0].body}</article>

@@ -1,13 +1,16 @@
 <script lang="ts">
+	import type { Task } from '$lib/types/task';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 
 	const modalStore = getModalStore();
+	const tasks = $state<Task[]>(JSON.parse(localStorage.getItem('tasks') || '[]'));
 
 	function openForm() {
 		modalStore.trigger({
 			type: 'component',
 			title: 'Add a new task',
 			component: 'addTaskModal',
+			props: { tasks },
 		});
 	}
 </script>
@@ -15,7 +18,7 @@
 <div>
 	<section class="my-8">
 		<div class="flex justify-end">
-			<button type="button" class="variant-filled btn btn-md font-semibold" on:click={openForm}>
+			<button type="button" class="variant-filled btn btn-md font-semibold" onclick={openForm}>
 				Add Task
 			</button>
 		</div>
