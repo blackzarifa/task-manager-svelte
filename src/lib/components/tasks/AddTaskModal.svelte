@@ -22,7 +22,6 @@
 
 		tasks.push(newTask);
 		localStorage.setItem('tasks', JSON.stringify(tasks));
-		console.log(formData);
 
 		modalStore.close();
 		return undefined;
