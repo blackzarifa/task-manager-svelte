@@ -8,15 +8,13 @@
 	const formData = $state({
 		title: '',
 		description: '',
-		dueDate: new Date(),
+		dueDate: '',
 	});
 
-	const handleSubmit: SubmitFunction = (event) => {
-		const data = Object.fromEntries(event.formData);
+	const handleSubmit: SubmitFunction = () => {
+		console.log(formData);
 
-		$modalStore[0]?.response?.(data);
 		modalStore.close();
-
 		return undefined;
 	};
 
@@ -62,6 +60,7 @@
 					type="date"
 					bind:value={formData.dueDate}
 					min={new Date().toISOString().split('T')[0]}
+					required
 				/>
 			</label>
 
