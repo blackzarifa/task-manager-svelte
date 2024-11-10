@@ -20,8 +20,6 @@
 		modalStore.close();
 		return undefined;
 	};
-
-	const cForm = 'border border-surface-500 p-4 space-y-4';
 </script>
 
 {#if $modalStore[0]}
@@ -32,7 +30,12 @@
 			<article>{$modalStore[0].body}</article>
 		{/if}
 
-		<form method="POST" action="?/createTask" use:enhance={handleSubmit} class={cForm}>
+		<form
+			method="POST"
+			action="?/createTask"
+			use:enhance={handleSubmit}
+			class="space-y-4 border border-surface-500 p-4"
+		>
 			<label class="label">
 				<span>Title</span>
 				<input
