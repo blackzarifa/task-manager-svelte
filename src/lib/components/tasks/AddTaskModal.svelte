@@ -7,7 +7,8 @@
 	const modalStore = getModalStore();
 	const { addTask } = $modalStore[0]?.meta ?? { addTask: () => {} };
 
-	const formData = $state<Omit<Task, 'id'>>({
+	const formData = $state<Task>({
+		id: crypto.randomUUID(),
 		title: '',
 		description: '',
 		dueDate: '',
