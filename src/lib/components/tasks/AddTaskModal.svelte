@@ -5,7 +5,7 @@
 	import type { Task } from '$lib/types/task';
 
 	const modalStore = getModalStore();
-	const { tasks } = $modalStore[0]?.meta ?? { tasks: [] };
+	const { addTask } = $modalStore[0]?.meta ?? { addTask: () => {} };
 
 	const formData = $state<Omit<Task, 'id'>>({
 		title: '',
@@ -16,13 +16,7 @@
 	});
 
 	const handleSubmit: SubmitFunction = () => {
-		const newTask = {
-			...formData,
-		};
-
-		tasks.push(newTask);
-		localStorage.setItem('tasks', JSON.stringify(tasks));
-
+		addTask(formData);
 		modalStore.close();
 		return undefined;
 	};

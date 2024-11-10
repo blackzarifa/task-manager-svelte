@@ -5,12 +5,17 @@
 	const modalStore = getModalStore();
 	const tasks = $state<Task[]>(JSON.parse(localStorage.getItem('tasks') || '[]'));
 
+	function addTask(newTask: Task) {
+		tasks.push(newTask);
+		localStorage.setItem('tasks', JSON.stringify(tasks));
+	}
+
 	function openForm() {
 		modalStore.trigger({
 			type: 'component',
 			title: 'Add a new task',
 			component: 'addTaskModal',
-			meta: { tasks },
+			meta: { addTask },
 		});
 	}
 </script>
