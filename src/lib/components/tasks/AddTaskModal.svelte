@@ -17,9 +17,15 @@
 	});
 
 	const handleSubmit: SubmitFunction = () => {
-		addTask(formData);
-		modalStore.close();
-		return undefined;
+		return async ({ result }) => {
+			if (result.type === 'success') {
+				const data = result.data as { task: Task };
+				addTask(data.task);
+				modalStore.close();
+			} else if (result.type === 'failure') {
+				console.error('Failed to create task:', result.data);
+			}
+		};
 	};
 </script>
 
@@ -42,6 +48,7 @@
 				<input
 					class="input"
 					type="text"
+					name="title"
 					bind:value={formData.title}
 					placeholder="Task title..."
 					required
@@ -52,6 +59,7 @@
 				<span>Description</span>
 				<textarea
 					class="textarea"
+					name="description"
 					bind:value={formData.description}
 					placeholder="Task description..."
 					rows="3"
@@ -63,6 +71,7 @@
 				<input
 					class="input"
 					type="date"
+					name="dueDate"
 					bind:value={formData.dueDate}
 					min={new Date().toISOString().split('T')[0]}
 					required

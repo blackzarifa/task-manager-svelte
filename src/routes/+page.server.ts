@@ -4,9 +4,9 @@ import type { Actions } from './$types';
 export const actions = {
 	createTask: async ({ request }) => {
 		const formData = await request.formData();
+		console.log(formData);
 
 		try {
-			console.log(formData);
 			const title = formData.get('title');
 			if (!title) return fail(400, { error: 'Title is required' });
 
