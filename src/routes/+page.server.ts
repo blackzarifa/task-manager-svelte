@@ -1,6 +1,5 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import type { Task } from '$lib/types/task';
 
 export const actions = {
 	createTask: async ({ request }) => {

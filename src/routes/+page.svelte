@@ -1,15 +1,15 @@
 <script lang="ts">
 	import type { Task } from '$lib/types/task';
 	import { getModalStore } from '@skeletonlabs/skeleton';
+	import { browser } from '$app/environment';
 
 	const modalStore = getModalStore();
-	const tasks = $state<Task[]>(JSON.parse(localStorage.getItem('tasks') || '[]'));
+	const tasks = $state<Task[]>(browser ? JSON.parse(localStorage.getItem('tasks') || '[]') : []);
 
 	function addTask(newTask: Task) {
 		tasks.push(newTask);
-		localStorage.setItem('tasks', JSON.stringify(tasks));
+		if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
-
 	function openForm() {
 		modalStore.trigger({
 			type: 'component',
