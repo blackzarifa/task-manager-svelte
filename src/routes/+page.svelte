@@ -10,6 +10,7 @@
 		tasks.push(newTask);
 		if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
+
 	function openForm() {
 		modalStore.trigger({
 			type: 'component',
