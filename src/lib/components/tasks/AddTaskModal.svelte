@@ -7,7 +7,7 @@
 	const modalStore = getModalStore();
 	const { addTask } = $modalStore[0]?.meta ?? { addTask: () => {} };
 
-	const formData = $state<Task>({
+	const task = $state<Task>({
 		id: crypto.randomUUID(),
 		title: '',
 		description: '',
@@ -16,7 +16,11 @@
 		createdAt: new Date().toISOString(),
 	});
 
-	const handleSubmit: SubmitFunction = () => {
+	const handleSubmit: SubmitFunction = ({ formData }) => {
+		formData.append('id', String(task.id));
+		formData.append('createdAt', task.createdAt);
+		formData.append('completed', String(task.completed));
+
 		return async ({ result }) => {
 			if (result.type === 'success') {
 				const data = result.data as { task: Task };
@@ -49,7 +53,7 @@
 					class="input"
 					type="text"
 					name="title"
-					bind:value={formData.title}
+					bind:value={task.title}
 					placeholder="Task title..."
 					required
 				/>
@@ -60,7 +64,7 @@
 				<textarea
 					class="textarea"
 					name="description"
-					bind:value={formData.description}
+					bind:value={task.description}
 					placeholder="Task description..."
 					rows="3"
 				></textarea>
@@ -72,7 +76,7 @@
 					class="input"
 					type="date"
 					name="dueDate"
-					bind:value={formData.dueDate}
+					bind:value={task.dueDate}
 					min={new Date().toISOString().split('T')[0]}
 					required
 				/>
