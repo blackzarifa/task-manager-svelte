@@ -8,6 +8,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		// In future: DB operations
 		return json({ task });
 	} catch (error) {
+		console.error(error);
 		return new Response(JSON.stringify({ error: 'Failed to create task' }), {
 			status: 500,
 		});
@@ -19,6 +20,7 @@ export const GET: RequestHandler = async () => {
 		// In future: const tasks = await db.tasks.findMany()
 		return json({ tasks: [] });
 	} catch (error) {
+		console.error(error);
 		return new Response(JSON.stringify({ error: 'Failed to fetch tasks' }), {
 			status: 500,
 		});
