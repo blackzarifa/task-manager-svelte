@@ -2,6 +2,7 @@
 	import type { Task } from '$lib/types/task';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import { browser } from '$app/environment';
+	import TaskCard from '$lib/components/tasks/TaskCard.svelte';
 
 	const modalStore = getModalStore();
 	const tasks = $state<Task[]>(browser ? JSON.parse(localStorage.getItem('tasks') || '[]') : []);
@@ -32,9 +33,11 @@
 
 	<section>
 		<div class="rounded-lg shadow">
-			<div class="border-b p-4">
+			<div class="mb-6 border-b p-4">
 				<h2 class="font-semibold">Tasks</h2>
 			</div>
 		</div>
+
+		<TaskCard />
 	</section>
 </div>
