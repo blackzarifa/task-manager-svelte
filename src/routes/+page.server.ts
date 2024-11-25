@@ -5,22 +5,25 @@ import type { Task } from '$lib/types/task';
 export const actions = {
 	createTask: async ({ request, fetch }) => {
 		const formData = await request.formData();
-		console.log(formData);
-		const task = JSON.parse(formData.get('task') as string) as Task;
-		console.log(task);
+		const task: Task = {
+			title: formData.get('title') as string,
+			description: formData.get('description') as string,
+			dueDate: formData.get('dueDate') as string,
+			completed: formData.get('completed') === 'true',
+			createdAt: formData.get('createdAt') as string,
+		};
 
 		try {
-			if (!task.title) return fail(400, { error: 'Title is required' });
-
 			const response = await fetch('api/tasks', {
 				method: 'POST',
 				body: JSON.stringify(task),
 			});
 			if (!response.ok) return fail(500, { error: 'Failed to create task' });
 
-			const { data } = await response.json();
+			const data = await response.json();
 			return { success: true, data };
 		} catch (error) {
+			console.error(error);
 			return fail(500, {
 				error: 'Failed to create task',
 			});
