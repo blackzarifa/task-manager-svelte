@@ -6,11 +6,12 @@ export const actions = {
 	createTask: async ({ request, fetch }) => {
 		const formData = await request.formData();
 		const task: Task = {
+			id: crypto.randomUUID(),
 			title: formData.get('title') as string,
 			description: formData.get('description') as string,
 			dueDate: formData.get('dueDate') as string,
-			completed: formData.get('completed') === 'true',
-			createdAt: formData.get('createdAt') as string,
+			completed: false,
+			createdAt: new Date().toISOString(),
 		};
 
 		try {
@@ -20,7 +21,7 @@ export const actions = {
 			});
 			if (!response.ok) return fail(500, { error: 'Failed to create task' });
 
-			const createdTask = await response.json();
+			const createdTask = (await response.json()) as Task;
 			return { task: createdTask };
 		} catch (error) {
 			console.error(error);

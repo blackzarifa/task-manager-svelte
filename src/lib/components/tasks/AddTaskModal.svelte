@@ -7,27 +7,21 @@
 	const modalStore = getModalStore();
 	const { addTask } = $modalStore[0]?.meta ?? { addTask: () => {} };
 
-	const task = $state<Task>({
-		id: crypto.randomUUID(),
+	const task = $state<Partial<Task>>({
 		title: '',
 		description: '',
 		dueDate: '',
-		completed: false,
-		createdAt: new Date().toISOString(),
 	});
 
-	const handleSubmit: SubmitFunction = ({ formData }) => {
-		formData.append('id', String(task.id));
-		formData.append('createdAt', task.createdAt);
-		formData.append('completed', String(task.completed));
-
+	const handleSubmit: SubmitFunction = () => {
 		return async ({ result }) => {
 			if (result.type === 'success') {
 				const data = result.data as { task: Task };
 				addTask(data.task);
 				modalStore.close();
 			} else if (result.type === 'failure') {
-				console.error('Failed to create task:', result.data);
+				const error = result.data?.error;
+				console.error('Failed to create task:', error);
 			}
 		};
 	};
