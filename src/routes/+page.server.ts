@@ -20,8 +20,8 @@ export const actions = {
 			});
 			if (!response.ok) return fail(500, { error: 'Failed to create task' });
 
-			const data = await response.json();
-			return { success: true, data };
+			const createdTask = await response.json();
+			return { task: createdTask };
 		} catch (error) {
 			console.error(error);
 			return fail(500, {
