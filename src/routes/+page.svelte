@@ -38,6 +38,8 @@
 			</div>
 		</div>
 
-		<TaskCard />
+		{#each tasks as task (task.id)}
+			<TaskCard {task} />
+		{/each}
 	</section>
 </div>
