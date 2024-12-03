@@ -11,6 +11,6 @@ export function formatDateTime(dateString: string): string {
   const date = new Date(dateString);
   return new Intl.DateTimeFormat('en-US', {
     dateStyle: 'full',
-    timeStyle: 'long',
+    timeStyle: 'short',
   }).format(date);
 }
