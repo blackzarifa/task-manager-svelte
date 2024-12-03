@@ -34,7 +34,7 @@
 	<section>
 		<div class="rounded-lg shadow">
 			<div class="mb-6 border-b p-4">
-				<h2 class="font-semibold">Tasks</h2>
+				<h3 class="h3 font-semibold">Tasks</h3>
 			</div>
 		</div>
 
