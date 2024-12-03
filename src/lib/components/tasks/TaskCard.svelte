@@ -6,7 +6,9 @@
 </script>
 
 <div class="card variant-filled-primary card-hover my-4 cursor-pointer p-4">
-	<header class="flex items-center justify-between">
+	<header
+		class="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0"
+	>
 		<h4 class="h4">{task.title}</h4>
 
 		<div class="flex gap-2">
@@ -25,7 +27,9 @@
 		<p>{task.description}</p>
 	</div>
 
-	<footer class="mt-4 flex items-center justify-between">
+	<footer
+		class="mt-4 flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0"
+	>
 		<span class="text-sm opacity-90">
 			Created {formatDateTime(task.createdAt)}
 		</span>
