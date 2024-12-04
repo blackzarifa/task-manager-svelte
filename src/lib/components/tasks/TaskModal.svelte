@@ -5,12 +5,15 @@
 	import type { Task } from '$lib/types/task';
 
 	const modalStore = getModalStore();
-	const { addTask } = $modalStore[0]?.meta ?? { addTask: () => {} };
+	const { addTask, task: propTask } = $modalStore[0]?.meta ?? {
+		addTask: () => {},
+		task: undefined,
+	};
 
 	const task = $state<Partial<Task>>({
-		title: '',
-		description: '',
-		dueDate: '',
+		title: propTask?.title ?? '',
+		description: propTask?.description ?? '',
+		dueDate: propTask?.dueDate ?? '',
 	});
 
 	const handleSubmit: SubmitFunction = () => {

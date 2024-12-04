@@ -1,8 +1,19 @@
 <script lang="ts">
 	import type { Task } from '$lib/types/task';
 	import { formatDate, formatDateTime } from '$lib/utils/dates';
+	import { getModalStore } from '@skeletonlabs/skeleton';
 
+	const modalStore = getModalStore();
 	const { task } = $props<{ task: Task }>();
+
+	function openEditForm() {
+		modalStore.trigger({
+			type: 'component',
+			title: 'Edit task',
+			component: 'taskModal',
+			meta: { task },
+		});
+	}
 </script>
 
 <div class="card variant-filled-primary card-hover my-4 cursor-pointer p-4">
@@ -33,7 +44,7 @@
 		</span>
 
 		<div class="flex w-full gap-2 sm:w-auto">
-			<button class="variant-filled-success btn btn-sm flex-1">Edit</button>
+			<button class="variant-filled-success btn btn-sm flex-1" onclick={openEditForm}>Edit</button>
 			<button class="variant-filled-error btn btn-sm flex-1">Delete</button>
 		</div>
 	</footer>
