@@ -3,7 +3,7 @@
 	import Header from '$lib/components/common/Header.svelte';
 	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
 	import type { ModalComponent } from '@skeletonlabs/skeleton';
-	import AddTaskModal from '$lib/components/tasks/AddTaskModal.svelte';
+	import TaskModal from '$lib/components/tasks/TaskModal.svelte';
 
 	initializeStores();
 
@@ -11,7 +11,7 @@
 
 	const title = $state('Task Manager');
 	const modalRegistry: Record<string, ModalComponent> = {
-		addTaskModal: { ref: AddTaskModal },
+		taskModal: { ref: TaskModal },
 	};
 </script>
 
