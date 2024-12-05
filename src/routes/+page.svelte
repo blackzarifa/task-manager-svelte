@@ -7,7 +7,7 @@
 	const modalStore = getModalStore();
 	const tasks = $state<Task[]>(browser ? JSON.parse(localStorage.getItem('tasks') || '[]') : []);
 
-	function addTask(newTask: Task) {
+	function createTask(newTask: Task) {
 		tasks.push(newTask);
 		if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
@@ -17,7 +17,7 @@
 			type: 'component',
 			title: 'Add a new task',
 			component: 'taskModal',
-			meta: { addTask },
+			meta: { mode: 'create', createTask },
 		});
 	}
 </script>

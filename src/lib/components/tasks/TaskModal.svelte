@@ -4,23 +4,30 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import type { Task } from '$lib/types/task';
 
+	type TaskModalMeta =
+		| { mode: 'create'; createTask: (task: Task) => void }
+		| { mode: 'edit'; task: Task; updateTask: (task: Task) => void };
+
 	const modalStore = getModalStore();
-	const { addTask, task: propTask } = $modalStore[0]?.meta ?? {
-		addTask: () => {},
-		task: undefined,
+	const meta: TaskModalMeta = $modalStore[0]?.meta ?? {
+		mode: 'create',
+		createTask: () => {},
 	};
 
 	const task = $state<Partial<Task>>({
-		title: propTask?.title ?? '',
-		description: propTask?.description ?? '',
-		dueDate: propTask?.dueDate ?? '',
+		title: meta.mode === 'edit' ? meta.task.title : '',
+		description: meta.mode === 'edit' ? meta.task.description : '',
+		dueDate: meta.mode === 'edit' ? meta.task.dueDate : '',
 	});
 
 	const handleSubmit: SubmitFunction = () => {
 		return async ({ result }) => {
 			if (result.type === 'success') {
 				const data = result.data as { task: Task };
-				addTask(data.task);
+
+				if (meta.mode === 'create') meta.createTask(data.task);
+				else meta.updateTask(data.task);
+
 				modalStore.close();
 			} else if (result.type === 'failure') {
 				const error = result.data?.error;
@@ -40,7 +47,7 @@
 
 		<form
 			method="POST"
-			action="?/createTask"
+			action={meta.mode === 'create' ? '?/createTask' : '?/updateTask'}
 			use:enhance={handleSubmit}
 			class="space-y-4 border border-surface-500 p-4"
 		>
