@@ -4,14 +4,14 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 
 	const modalStore = getModalStore();
-	const { task } = $props<{ task: Task }>();
+	const { task, updateTask } = $props<{ task: Task; updateTask: (task: Task) => void }>();
 
 	function openEditForm() {
 		modalStore.trigger({
 			type: 'component',
 			title: 'Edit task',
 			component: 'taskModal',
-			meta: { task },
+			meta: { mode: 'edit', task, updateTask },
 		});
 	}
 </script>
