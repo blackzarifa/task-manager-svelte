@@ -12,6 +12,11 @@
 		if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
 
+	function updateTask(updatedTask: Task) {
+		const updatedTasks = tasks.map((t: Task) => (t.id === updatedTask.id ? updatedTask : t));
+		if (browser) localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+	}
+
 	function openForm() {
 		modalStore.trigger({
 			type: 'component',
@@ -39,7 +44,7 @@
 		</div>
 
 		{#each tasks as task (task.id)}
-			<TaskCard {task} />
+			<TaskCard {task} {updateTask} />
 		{/each}
 	</section>
 </div>
