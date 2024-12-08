@@ -50,7 +50,7 @@
 
 		<form
 			method="POST"
-			action={meta.mode === 'create' ? '?/createTask' : `?/updateTask&id={meta.task.id}`}
+			action={meta.mode === 'create' ? '?/createTask' : `?/updateTask`}
 			use:enhance={handleSubmit}
 			class="space-y-4 border border-surface-500 p-4"
 		>
@@ -93,7 +93,9 @@
 				<button class="variant-ghost btn" type="button" onclick={() => modalStore.close()}>
 					Cancel
 				</button>
-				<button class="variant-filled-primary btn" type="submit"> Create Task </button>
+				<button class="variant-filled-primary btn" type="submit">
+					{meta.mode === 'create' ? 'Create' : 'Update'} Task
+				</button>
 			</footer>
 		</form>
 	</div>
