@@ -54,6 +54,10 @@
 			use:enhance={handleSubmit}
 			class="space-y-4 border border-surface-500 p-4"
 		>
+			{#if meta.mode === 'edit'}
+				<input type="hidden" name="id" value={meta.task.id} />
+			{/if}
+
 			<label class="label">
 				<span>Title</span>
 				<input
