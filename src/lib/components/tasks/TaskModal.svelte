@@ -25,8 +25,11 @@
 			if (result.type === 'success') {
 				const data = result.data as { task: Task };
 
-				if (meta.mode === 'create') meta.createTask(data.task);
-				else meta.updateTask(data.task);
+				if (meta.mode === 'create') {
+					meta.createTask(data.task);
+				} else if ('updateTask' in meta) {
+					meta.updateTask(data.task);
+				}
 
 				modalStore.close();
 			} else if (result.type === 'failure') {
