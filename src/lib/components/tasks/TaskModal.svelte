@@ -47,7 +47,7 @@
 
 		<form
 			method="POST"
-			action={meta.mode === 'create' ? '?/createTask' : '?/updateTask'}
+			action={meta.mode === 'create' ? '?/createTask' : `?/updateTask&id={meta.task.id}`}
 			use:enhance={handleSubmit}
 			class="space-y-4 border border-surface-500 p-4"
 		>
