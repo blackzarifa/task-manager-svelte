@@ -20,7 +20,7 @@
 	<header class="flex flex-wrap gap-y-2 sm:items-center sm:justify-between">
 		<h4 class="h4 w-full sm:w-auto">{task.title}</h4>
 
-		<div class="flex gap-2">
+		<div class="ml-auto flex gap-2">
 			<span class="variant-filled-surface badge">
 				Due {formatDate(task.dueDate)}
 			</span>
