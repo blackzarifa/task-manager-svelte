@@ -25,10 +25,16 @@
 			if (result.type === 'success') {
 				const data = result.data as { task: Task };
 
-				if (meta.mode === 'create') {
+				if (meta.mode === 'edit') {
+					const updatedTask: Task = {
+						...meta.task,
+						title: task.title as string,
+						description: task.description as string,
+						dueDate: task.dueDate as string,
+					};
+					meta.updateTask(updatedTask);
+				} else {
 					meta.createTask(data.task);
-				} else if ('updateTask' in meta) {
-					meta.updateTask(data.task);
 				}
 
 				modalStore.close();
@@ -56,6 +62,7 @@
 		>
 			{#if meta.mode === 'edit'}
 				<input type="hidden" name="id" value={meta.task.id} />
+				<input type="hidden" name="createdAt" value={meta.task.createdAt} />
 			{/if}
 
 			<label class="label">

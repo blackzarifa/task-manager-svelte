@@ -36,7 +36,7 @@ export const actions = {
       description: formData.get('description') as string,
       dueDate: formData.get('dueDate') as string,
       completed: false,
-      createdAt: new Date().toISOString(),
+      createdAt: formData.get('createdAt') as string,
     };
     return { task };
   },
