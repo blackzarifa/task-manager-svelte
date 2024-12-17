@@ -26,3 +26,16 @@ export const POST: RequestHandler = async ({ request }) => {
     });
   }
 };
+
+export const PUT: RequestHandler = async ({ request }) => {
+  try {
+    const task: Task = await request.json();
+    // DB operations
+    return json(task);
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: 'Failed to update task' }), {
+      status: 500,
+    });
+  }
+};
