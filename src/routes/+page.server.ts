@@ -23,8 +23,8 @@ export const actions = {
 
       const createdTask = (await response.json()) as Task;
       return { task: createdTask };
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       return fail(500, { error: 'Failed to create task' });
     }
   },
@@ -38,6 +38,19 @@ export const actions = {
       completed: false,
       createdAt: formData.get('createdAt') as string,
     };
-    return { task };
+
+    try {
+      const response = await fetch('api/tasks', {
+        method: 'PUT',
+        body: JSON.stringify(task),
+      });
+      if (!response.ok) return fail(500, { error: 'Failed to update task' });
+
+      const updatedTask = (await response.json()) as Task;
+      return { task: updatedTask };
+    } catch (err) {
+      console.error(err);
+      return fail(500, { error: 'Failed to update task' });
+    }
   },
 } satisfies Actions;
