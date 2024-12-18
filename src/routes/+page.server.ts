@@ -19,7 +19,11 @@ export const actions = {
         method: 'POST',
         body: JSON.stringify(task),
       });
-      if (!response.ok) return fail(500, { error: 'Failed to create task' });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        return fail(response.status, { error: errorResponse.error });
+      }
 
       const createdTask = (await response.json()) as Task;
       return { task: createdTask };
@@ -44,7 +48,11 @@ export const actions = {
         method: 'PUT',
         body: JSON.stringify(task),
       });
-      if (!response.ok) return fail(500, { error: 'Failed to update task' });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        return fail(response.status, { error: errorResponse.error });
+      }
 
       const updatedTask = (await response.json()) as Task;
       return { task: updatedTask };
