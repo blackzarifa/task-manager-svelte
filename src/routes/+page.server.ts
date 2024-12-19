@@ -32,7 +32,7 @@ export const actions = {
       return fail(500, { error: 'Failed to create task' });
     }
   },
-  updateTask: async ({ request }) => {
+  updateTask: async ({ request, fetch }) => {
     const formData = await request.formData();
     const task: Task = {
       id: formData.get('id') as string,
