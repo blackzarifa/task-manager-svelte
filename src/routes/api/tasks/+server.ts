@@ -8,9 +8,7 @@ export const GET: RequestHandler = async () => {
     return json({ tasks: [] });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ error: 'Failed to fetch tasks' }), {
-      status: 500,
-    });
+    return json({ error: 'Failed to fetch tasks' }, { status: 500 });
   }
 };
 
@@ -21,9 +19,7 @@ export const POST: RequestHandler = async ({ request }) => {
     return json(task);
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ error: 'Failed to create task' }), {
-      status: 500,
-    });
+    return json({ error: 'Failed to create task' }, { status: 500 });
   }
 };
 
@@ -34,8 +30,6 @@ export const PUT: RequestHandler = async ({ request }) => {
     return json(task);
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ error: 'Failed to update task' }), {
-      status: 500,
-    });
+    return json({ error: 'Failed to update task' }, { status: 500 });
   }
 };
