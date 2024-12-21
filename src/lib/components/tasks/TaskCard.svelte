@@ -7,6 +7,7 @@
 	const { task, updateTask, deleteTask } = $props<{
 		task: Task;
 		updateTask: (task: Task) => void;
+		deleteTask: (task: Task) => void;
 	}>();
 
 	function openEditForm() {
