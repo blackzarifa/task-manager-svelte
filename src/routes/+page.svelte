@@ -13,8 +13,14 @@
 	}
 
 	function updateTask(updatedTask: Task) {
-		const updatedTasks = tasks.map((t: Task) => (t.id === updatedTask.id ? updatedTask : t));
-		if (browser) localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+		const allTasks = tasks.map((t: Task) => (t.id === updatedTask.id ? updatedTask : t));
+		if (browser) localStorage.setItem('tasks', JSON.stringify(allTasks));
+	}
+
+	function deleteTask(deletedTask: Task) {
+		const index = tasks.findIndex((t: Task) => t.id === deletedTask.id);
+		tasks.splice(index, 1);
+		if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
 
 	function openForm() {
