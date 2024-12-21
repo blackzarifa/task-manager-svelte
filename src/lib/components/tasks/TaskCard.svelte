@@ -25,7 +25,12 @@
 			title: 'Confirm Deletion',
 			body: 'Are you sure you want to delete this task?',
 			response: (r: boolean) => {
-				console.log(r);
+				if (r) {
+					fetch('?/deleteTask', {
+						method: 'POST',
+						body: JSON.stringify({ id: task.id }),
+					});
+				}
 				// deleteTask(task)
 			},
 		});
