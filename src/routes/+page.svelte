@@ -19,8 +19,10 @@
 
 	function deleteTask(deletedTask: Task) {
 		const index = tasks.findIndex((t: Task) => t.id === deletedTask.id);
-		tasks.splice(index, 1);
-		if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
+		if (index !== -1) {
+			tasks.splice(index, 1);
+			if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
+		}
 	}
 
 	function openForm() {
