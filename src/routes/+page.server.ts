@@ -61,7 +61,7 @@ export const actions = {
       return fail(500, { error: 'Failed to update task' });
     }
   },
-  deleteTask: async ({ request }) => {
+  deleteTask: async ({ request, fetch }) => {
     const { id } = await request.json();
 
     try {
