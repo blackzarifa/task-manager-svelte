@@ -50,7 +50,7 @@
 		</div>
 
 		{#each tasks as task (task.id)}
-			<TaskCard {task} {updateTask} />
+			<TaskCard {task} {updateTask} {deleteTask} />
 		{/each}
 	</section>
 </div>

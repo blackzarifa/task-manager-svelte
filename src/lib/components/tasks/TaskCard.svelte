@@ -4,7 +4,10 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 
 	const modalStore = getModalStore();
-	const { task, updateTask } = $props<{ task: Task; updateTask: (task: Task) => void }>();
+	const { task, updateTask, deleteTask } = $props<{
+		task: Task;
+		updateTask: (task: Task) => void;
+	}>();
 
 	function openEditForm() {
 		modalStore.trigger({
@@ -12,6 +15,18 @@
 			title: 'Edit task',
 			component: 'taskModal',
 			meta: { mode: 'edit', task, updateTask },
+		});
+	}
+
+	function openDeleteModal() {
+		modalStore.trigger({
+			type: 'confirm',
+			title: 'Confirm Deletion',
+			body: 'Are you sure you want to delete this task?',
+			response: (r: boolean) => {
+				console.log(r);
+				// deleteTask(task)
+			},
 		});
 	}
 </script>
@@ -45,7 +60,9 @@
 
 		<div class="flex w-full gap-2 sm:w-auto">
 			<button class="variant-filled-success btn btn-sm flex-1" onclick={openEditForm}>Edit</button>
-			<button class="variant-filled-error btn btn-sm flex-1">Delete</button>
+			<button class="variant-filled-error btn btn-sm flex-1" onclick={openDeleteModal}
+				>Delete</button
+			>
 		</div>
 	</footer>
 </div>
