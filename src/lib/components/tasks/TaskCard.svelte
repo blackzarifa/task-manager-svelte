@@ -10,6 +10,14 @@
 		deleteTask: (task: Task) => void;
 	}>();
 
+	async function handleDelete() {
+		const res = await fetch(`?/deleteTask`, {
+			method: 'POST',
+			body: JSON.stringify({ id: task.id }),
+		});
+		if (res.ok) deleteTask(task);
+	}
+
 	function openEditForm() {
 		modalStore.trigger({
 			type: 'component',
@@ -24,15 +32,7 @@
 			type: 'confirm',
 			title: 'Confirm Deletion',
 			body: 'Are you sure you want to delete this task?',
-			response: (r: boolean) => {
-				if (r) {
-					fetch('?/deleteTask', {
-						method: 'POST',
-						body: JSON.stringify({ id: task.id }),
-					});
-				}
-				// deleteTask(task)
-			},
+			response: (r: boolean) => r && handleDelete(),
 		});
 	}
 </script>
