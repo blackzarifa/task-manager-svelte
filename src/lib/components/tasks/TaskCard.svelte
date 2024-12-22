@@ -15,7 +15,20 @@
 			method: 'POST',
 			body: JSON.stringify({ id: task.id }),
 		});
-		if (res.ok) deleteTask(task);
+
+		const data = await res.json();
+
+		if (data.type === 'failure') {
+			modalStore.trigger({
+				type: 'alert',
+				title: 'Error',
+				body: JSON.parse(data.data)[0],
+				buttonTextCancel: 'Close',
+			});
+			return;
+		}
+
+		deleteTask(task);
 	}
 
 	function openEditForm() {
