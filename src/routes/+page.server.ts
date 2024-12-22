@@ -71,10 +71,11 @@ export const actions = {
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        return fail(response.status, { error: errorResponse.error });
+        return fail(response.status, errorResponse);
       }
 
-      return { success: true };
+      const data = await response.json();
+      return data;
     } catch (err) {
       console.error(err);
       return fail(500, { error: 'Failed to delete task' });
