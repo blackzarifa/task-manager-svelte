@@ -2,6 +2,7 @@
 	import type { Task } from '$lib/types/task';
 	import { formatDate, formatDateTime } from '$lib/utils/dates';
 	import { getModalStore } from '@skeletonlabs/skeleton';
+	import { parseErrorObject } from '$lib/utils/errors';
 
 	const modalStore = getModalStore();
 	const { task, updateTask, deleteTask } = $props<{
@@ -22,7 +23,7 @@
 			modalStore.trigger({
 				type: 'alert',
 				title: 'Error',
-				body: JSON.parse(data.data)[0],
+				body: parseErrorObject(data.data),
 				buttonTextCancel: 'Close',
 			});
 			return;
