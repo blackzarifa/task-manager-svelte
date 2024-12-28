@@ -9,6 +9,6 @@ export const DELETE: RequestHandler = async ({ params }) => {
     return json({ success: true });
   } catch (error) {
     console.error(error);
-    return json('Failed to delete task', { status: 500 });
+    return json({ error: 'Failed to delete task' }, { status: 500 });
   }
 };
