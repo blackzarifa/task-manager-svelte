@@ -63,18 +63,17 @@ export const actions = {
   },
   deleteTask: async ({ request, fetch }) => {
     const { id } = await request.json();
-
     try {
       const response = await fetch(`api/tasks/${id}`, {
         method: 'DELETE',
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorResponse = await response.json();
-        return fail(response.status, errorResponse);
+        return fail(response.status, data);
       }
 
-      const data = await response.json();
       return data;
     } catch (err) {
       console.error(err);
