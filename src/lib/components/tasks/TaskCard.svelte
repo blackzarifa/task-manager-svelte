@@ -2,7 +2,7 @@
 	import type { Task } from '$lib/types/task';
 	import { formatDate, formatDateTime } from '$lib/utils/dates';
 	import { getModalStore } from '@skeletonlabs/skeleton';
-	import { parseErrorObject } from '$lib/utils/errors';
+	import { handleActionError } from '$lib/utils/errors';
 
 	const modalStore = getModalStore();
 	const { task, updateTask, deleteTask } = $props<{
@@ -18,14 +18,11 @@
 		});
 
 		const data = await res.json();
+		console.log(data);
+		const modalSettings = handleActionError(data);
 
-		if (data.type === 'failure') {
-			modalStore.trigger({
-				type: 'alert',
-				title: 'Error',
-				body: parseErrorObject(data.data),
-				buttonTextCancel: 'Close',
-			});
+		if (modalSettings) {
+			modalStore.trigger(modalSettings);
 			return;
 		}
 
@@ -80,9 +77,9 @@
 
 		<div class="flex w-full gap-2 sm:w-auto">
 			<button class="variant-filled-success btn btn-sm flex-1" onclick={openEditForm}>Edit</button>
-			<button class="variant-filled-error btn btn-sm flex-1" onclick={openDeleteModal}
-				>Delete</button
-			>
+			<button class="variant-filled-error btn btn-sm flex-1" onclick={openDeleteModal}>
+				Delete
+			</button>
 		</div>
 	</footer>
 </div>
