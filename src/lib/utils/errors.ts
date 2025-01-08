@@ -16,7 +16,7 @@ export function handleActionError(data: ActionResult): ModalSettings | null {
     const modalSettings: ModalSettings = {
       type: 'alert',
       title: 'Error',
-      body: parseErrorObject(data as unknown as string),
+      body: parseErrorObject(data.data as unknown as string),
       buttonTextCancel: 'Close',
     };
     return modalSettings;
