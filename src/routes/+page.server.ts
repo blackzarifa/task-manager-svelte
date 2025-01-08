@@ -70,7 +70,7 @@ export const actions = {
       const data = await response.json();
 
       if (!response.ok) {
-        return fail(response.status, { error: data });
+        return fail(response.status, data);
       }
 
       return data;
