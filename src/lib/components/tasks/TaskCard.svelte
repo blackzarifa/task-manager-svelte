@@ -18,7 +18,6 @@
 		});
 
 		const data = await res.json();
-		console.log(data);
 		const modalSettings = handleActionError(data);
 
 		if (modalSettings) {
