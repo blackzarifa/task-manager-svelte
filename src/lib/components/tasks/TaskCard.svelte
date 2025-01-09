@@ -12,9 +12,8 @@
 	}>();
 
 	async function handleDelete() {
-		const res = await fetch(`?/deleteTask`, {
-			method: 'POST',
-			body: JSON.stringify({ id: task.id }),
+		const res = await fetch(`/api/tasks/${task.id}`, {
+			method: 'DELETE',
 		});
 
 		const data = await res.json();
