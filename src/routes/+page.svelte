@@ -13,8 +13,9 @@
 	}
 
 	function updateTask(updatedTask: Task) {
-		const allTasks = tasks.map((t: Task) => (t.id === updatedTask.id ? updatedTask : t));
-		if (browser) localStorage.setItem('tasks', JSON.stringify(allTasks));
+		const index = tasks.findIndex((t: Task) => t.id === updatedTask.id);
+		if (index !== -1) tasks[index] = updatedTask;
+		if (browser) localStorage.setItem('tasks', JSON.stringify(tasks));
 	}
 
 	function deleteTask(deletedTask: Task) {
