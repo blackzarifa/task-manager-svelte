@@ -45,6 +45,24 @@
 			response: (r: boolean) => r && handleDelete(),
 		});
 	}
+
+	async function handleCompletedChange(e: Event) {
+		const checked = (e.target as HTMLInputElement).checked;
+		const res = await fetch(`?/completeChange`, {
+			method: 'POST',
+			body: JSON.stringify({ id: task.id, completed: checked }),
+		});
+
+		const data = await res.json();
+		const modalSettings = handleActionError(data);
+
+		if (modalSettings) {
+			modalStore.trigger(modalSettings);
+			return;
+		}
+
+		updateTask({ ...task, completed: checked });
+	}
 </script>
 
 <div class="card variant-filled-primary card-hover my-4 cursor-pointer p-4">
@@ -57,7 +75,12 @@
 			</span>
 
 			<label class="flex items-center space-x-1">
-				<input class="checkbox" type="checkbox" />
+				<input
+					class="checkbox"
+					type="checkbox"
+					checked={task.completed}
+					onchange={handleCompletedChange}
+				/>
 				<p>Completed?</p>
 			</label>
 		</div>
