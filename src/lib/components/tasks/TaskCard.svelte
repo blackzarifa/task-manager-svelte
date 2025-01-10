@@ -2,7 +2,7 @@
 	import type { Task } from '$lib/types/task';
 	import { formatDate, formatDateTime } from '$lib/utils/dates';
 	import { getModalStore } from '@skeletonlabs/skeleton';
-	import { handleActionError } from '$lib/utils/errors';
+	import { handleActionError, handleSimpleErrorText } from '$lib/utils/errors';
 
 	const modalStore = getModalStore();
 	const { task, updateTask, deleteTask } = $props<{
@@ -17,9 +17,10 @@
 		});
 
 		const data = await res.json();
-		const modalSettings = handleActionError(data);
 
-		if (modalSettings) {
+		if (!res.ok) {
+			const modalSettings = handleSimpleErrorText(data.error);
+			console.log(modalSettings);
 			modalStore.trigger(modalSettings);
 			return;
 		}
