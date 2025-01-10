@@ -28,16 +28,16 @@
 	}
 
 	async function handleCompletedChange(e: Event) {
-		const checked = (e.target as HTMLInputElement).checked;
-		const res = await fetch(`?/completeChange`, {
-			method: 'POST',
-			body: JSON.stringify({ id: task.id, completed: checked }),
+		const checked: boolean = (e.target as HTMLInputElement).checked;
+		const res = await fetch(`api/tasks/${task.id}`, {
+			method: 'PUT',
+			body: checked,
 		});
-
 		const data = await res.json();
-		const modalSettings = handleActionError(data);
 
-		if (modalSettings) {
+		if (!res.ok) {
+			const modalSettings = handleSimpleErrorText(data.error);
+			console.log(modalSettings);
 			modalStore.trigger(modalSettings);
 			return;
 		}
