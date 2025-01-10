@@ -97,10 +97,8 @@
 		</span>
 
 		<div class="flex w-full gap-2 sm:w-auto">
-			<button class="variant-filled-success btn btn-sm flex-1" onclick={openEditForm}>Edit</button>
-			<button class="variant-filled-error btn btn-sm flex-1" onclick={openDeleteModal}>
-				Delete
-			</button>
+			<button class="variant-filled btn btn-sm flex-1" onclick={openEditForm}>Edit</button>
+			<button class="variant-outline btn btn-sm flex-1" onclick={openDeleteModal}> Delete </button>
 		</div>
 	</footer>
 </div>
