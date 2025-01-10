@@ -4,6 +4,6 @@
 
 @layer components {
   .checkbox:checked {
-    @apply [&:checked]:!bg-success-500;
+    @apply [&:checked]:!bg-surface-500;
   }
 }
