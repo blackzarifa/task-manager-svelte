@@ -15,7 +15,6 @@
 		const res = await fetch(`/api/tasks/${task.id}`, {
 			method: 'DELETE',
 		});
-
 		const data = await res.json();
 
 		if (!res.ok) {
@@ -26,24 +25,6 @@
 		}
 
 		deleteTask(task);
-	}
-
-	function openEditForm() {
-		modalStore.trigger({
-			type: 'component',
-			title: 'Edit task',
-			component: 'taskModal',
-			meta: { mode: 'edit', task, updateTask },
-		});
-	}
-
-	function openDeleteModal() {
-		modalStore.trigger({
-			type: 'confirm',
-			title: 'Confirm Deletion',
-			body: 'Are you sure you want to delete this task?',
-			response: (r: boolean) => r && handleDelete(),
-		});
 	}
 
 	async function handleCompletedChange(e: Event) {
@@ -62,6 +43,24 @@
 		}
 
 		updateTask({ ...task, completed: checked });
+	}
+
+	function openEditForm() {
+		modalStore.trigger({
+			type: 'component',
+			title: 'Edit task',
+			component: 'taskModal',
+			meta: { mode: 'edit', task, updateTask },
+		});
+	}
+
+	function openDeleteModal() {
+		modalStore.trigger({
+			type: 'confirm',
+			title: 'Confirm Deletion',
+			body: 'Are you sure you want to delete this task?',
+			response: (r: boolean) => r && handleDelete(),
+		});
 	}
 </script>
 
