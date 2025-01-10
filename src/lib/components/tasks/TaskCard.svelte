@@ -19,7 +19,6 @@
 
 		if (!res.ok) {
 			const modalSettings = handleSimpleErrorText(data.error);
-			console.log(modalSettings);
 			modalStore.trigger(modalSettings);
 			return;
 		}
