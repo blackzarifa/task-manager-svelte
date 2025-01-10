@@ -30,7 +30,7 @@
 		const checked: boolean = (e.target as HTMLInputElement).checked;
 		const res = await fetch(`api/tasks/${task.id}`, {
 			method: 'PUT',
-			body: checked,
+			body: JSON.stringify(checked),
 		});
 		const data = await res.json();
 
