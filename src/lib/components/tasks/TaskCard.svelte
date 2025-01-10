@@ -2,7 +2,7 @@
 	import type { Task } from '$lib/types/task';
 	import { formatDate, formatDateTime } from '$lib/utils/dates';
 	import { getModalStore } from '@skeletonlabs/skeleton';
-	import { handleActionError, handleSimpleErrorText } from '$lib/utils/errors';
+	import { handleSimpleErrorText } from '$lib/utils/errors';
 
 	const modalStore = getModalStore();
 	const { task, updateTask, deleteTask } = $props<{
