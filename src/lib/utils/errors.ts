@@ -23,3 +23,13 @@ export function handleActionError(data: ActionResult): ModalSettings | null {
   }
   return null;
 }
+
+export function handleSimpleErrorText(error: string): ModalSettings {
+  const modalSettings: ModalSettings = {
+    type: 'alert',
+    title: 'Error',
+    body: error,
+    buttonTextCancel: 'Close',
+  };
+  return modalSettings;
+}
