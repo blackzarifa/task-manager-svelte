@@ -63,7 +63,7 @@
 	}
 </script>
 
-<div class="card variant-filled-primary card-hover my-4 cursor-pointer p-4">
+<div class="card variant-filled-primary card-hover my-4 p-4">
 	<header class="flex flex-wrap gap-y-2 sm:items-center sm:justify-between">
 		<h4 class="h4 w-full sm:w-auto">{task.title}</h4>
 
