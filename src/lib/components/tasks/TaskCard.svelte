@@ -11,6 +11,8 @@
 		deleteTask: (task: Task) => void;
 	}>();
 
+	let isChecked = $state(task.completed);
+
 	async function handleDelete() {
 		const res = await fetch(`/api/tasks/${task.id}`, {
 			method: 'DELETE',
@@ -35,8 +37,8 @@
 		const data = await res.json();
 
 		if (!res.ok) {
+			isChecked = task.completed;
 			const modalSettings = handleSimpleErrorText(data.error);
-			console.log(modalSettings);
 			modalStore.trigger(modalSettings);
 			return;
 		}
@@ -74,9 +76,9 @@
 
 			<label class="flex items-center space-x-1">
 				<input
+					bind:checked={isChecked}
 					class="checkbox"
 					type="checkbox"
-					checked={task.completed}
 					onchange={handleCompletedChange}
 				/>
 				<p>Completed?</p>
