@@ -13,7 +13,7 @@ A simple task manager built with Svelte 5 + SvelteKit + Skeleton UI. Started as 
 - Create/Edit/Delete tasks
 - Task completion tracking
 - Due date management
-- Responsive UI with dark mode support
+- Responsive UI 
 - Error handling & form validation
 
 ## Project Structure
