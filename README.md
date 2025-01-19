@@ -16,6 +16,12 @@ A simple task manager built with Svelte 5 + SvelteKit + Skeleton UI. Started as 
 - Responsive UI 
 - Error handling & form validation
 
+## Screenshots
+
+![Task List](/screenshots/main_page.png)
+
+![Task Modal](/screenshots/add_task_modal.png)
+
 ## Project Structure
 
 ```
